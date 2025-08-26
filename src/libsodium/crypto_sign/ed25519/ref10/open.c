@@ -20,11 +20,12 @@ _crypto_sign_ed25519_verify_detached(const unsigned char *sig,
 {
     crypto_hash_sha512_state hs;
     unsigned char            h[64];
+    unsigned char            rcheck[32];
     ge25519_p3               check;
     ge25519_p3               expected_r;
     ge25519_p3               A;
-    ge25519_p3               sb_ah;
     ge25519_p2               sb_ah_p2;
+    int                      ret;
 
     ACQUIRE_FENCE;
 #ifdef ED25519_COMPAT
@@ -56,10 +57,11 @@ _crypto_sign_ed25519_verify_detached(const unsigned char *sig,
     sc25519_reduce(h);
 
     ge25519_double_scalarmult_vartime(&sb_ah_p2, h, &A, sig + 32);
-    ge25519_p2_to_p3(&sb_ah, &sb_ah_p2);
-    ge25519_p3_sub(&check, &expected_r, &sb_ah);
+    ge25519_tobytes(rcheck, &sb_ah_p2);
+    ret = crypto_verify_32(rcheck, sig);
+    sodium_memzero(&rcheck, sizeof rcheck);
 
-    return ge25519_has_small_order(&check) - 1;
+    return ret;
 }
 
 int

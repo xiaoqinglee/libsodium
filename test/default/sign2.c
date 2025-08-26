@@ -43,14 +43,14 @@ static TestData test_data[] = {
         "cdb267ce40c5cd45306fa5d2f29731459387dbf9eb933b7bd5aed9a765b88d4d",
         "160a1cb0dc9c0258cd0a7d23e94d8fa878bcb1925f2c64246b2dee1796bed5125ec6bc982a269b723e0668e540"
         "911a9a6a58921d6925e434ab10aa7940551a09",
-        0 /* acceptable */, /* 4 - cofactored verification */
+        -1 /* acceptable */, /* 4 - cofactored verification */
     },
     {
         "e47d62c63f830dc7a6851a0b1f33ae4bb2f507fb6cffec4011eaccd55b53f56c",
         "cdb267ce40c5cd45306fa5d2f29731459387dbf9eb933b7bd5aed9a765b88d4d",
         "21122a84e0b5fca4052f5b1235c80a537878b38f3142356b2c2384ebad4668b7e40bc836dac0f71076f9abe3a5"
         "3f9c03c1ceeeddb658d0030494ace586687405",
-        0 /* acceptable */, /* 5 - cofactored verification */
+        -1 /* acceptable */, /* 5 - cofactored verification */
     },
     {
         "85e241a07d148b41e47d62c63f830dc7a6851a0b1f33ae4bb2f507fb6cffec40",
